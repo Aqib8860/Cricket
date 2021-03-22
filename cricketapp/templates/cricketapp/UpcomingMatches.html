@@ -1,0 +1,28 @@
+<h1 style="text-align:center">Your Upcoming Matches</h1>
+
+<table class="table table-hover">
+{% for um in upcoming_match %}
+
+        <tr style="font-size:20px">
+            <td colspan="2" style="text-align:center" class="table-secondary">
+                {{ um.matchDate }} , {{ um.matchTime }}
+                <a class="btn btn-outline-danger" href="" style="float:right;margin-left: 2px">Delete</a>
+                <a class="btn btn-outline-primary" href="{% url 'cricket_app:start-match' um.id %}" style="float:right">Start Match</a>
+            </td>
+        </tr>
+        <tr>
+            <td>Match Id</td>
+            <td>{{ um.id }}</td>
+        </tr>
+        <tr style="font-size:20px">
+            <td>Tournament : </td>
+            <td>{{ um.tournament }}</td>
+        </tr>
+        <tr style="font-size:20px">
+            <td>Opponent : </td>
+            <td>{{ um.team2Name }}</td>
+        </tr>
+    <tr><td></td><td></td></tr>
+    <tr></tr>
+{% endfor %}
+</table>

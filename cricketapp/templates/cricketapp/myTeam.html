@@ -1,0 +1,73 @@
+{% extends 'cricketapp/main.html' %}
+{% block title %}Your Team{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center;color:gray"> Record</h2>
+{% include 'cricketapp/status.html' %}
+{% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+<br>
+{% if team %}
+<h1 style="text-align:center;color:gray">Your Team</h1>
+<br>
+    {% for t in team %}
+        <table class="table">
+
+                <tr class="table-dark">
+                    <td colspan="3" style="text-align:center;font-size:40px;color:white">{{ t.teamName }}</td>
+
+                </tr>
+
+            <tbody style="font-size:20px">
+                <tr class="table-secondary">
+                    <td>Captain </td>
+                    <td>{{ t.captain }}</td>
+                    <td><a class="btn btn-outline-danger">Change</a></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Vice Captain </td>
+                    <td>{{ t.viceCap }}</td>
+                    <td><a class="btn btn-outline-danger">Change</a></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Phone </td>
+                    <td>{{ t.phone }}</td>
+                    <td></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Email </td>
+                    <td>{{ t.email }}</td>
+                    <td></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Locality </td>
+                    <td>{{ t.locality }}</td>
+                    <td></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>City </td>
+                    <td>{{ t.city }}</td>
+                    <td></td>
+                </tr>
+                <tr class="table-secondary">
+                    <td>Created On </td>
+                    <td>{{ t.dateCreated }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    <center>
+        <a class="btn btn-primary" href="">Edit Details</a>
+        <a class="btn btn-warning" href="">Add Players</a>
+    </center>
+    {% endfor %}
+{% else %}
+    <h1 style="text-align:center">You Don't have any Team Create Now!</h1>
+    {% include 'cricketapp/createTeam.html' %}
+{% endif %}
+{% endblock %}

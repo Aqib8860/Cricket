@@ -1,0 +1,15 @@
+{% extends 'cricketapp/main.html' %}
+{% block title %}Matches{% endblock %}
+
+{% block content %}
+<br>
+<center>
+    <a href="{% url 'cricket_app:add-recent-match' %}" class="btn btn-primary" style="padding:20px">Add Recent Match</a>
+</center>
+<br><br>
+{% include 'cricketapp/AddMatchForm.html' %}
+<br>
+{% include 'cricketapp/UpcomingMatches.html' %}
+<br>
+{% include 'cricketapp/RecentMatches.html' %}
+{% endblock %}

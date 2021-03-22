@@ -1,0 +1,31 @@
+{% extends 'cricketapp/main.html' %}
+{% block title %}{{ request.user }}{% endblock %}
+
+{% block content %}
+<h1 style="text-align:right">Hello {{ request.user }}</h1>
+<br>
+<h2 style="text-align:center"> Record</h2>
+{% include 'cricketapp/status.html' %}
+<br>
+<h1 style="text-align:center">Your Upcoming Match</h1>
+<table>
+
+{% for um in upcoming_match %}
+    <table class="table table-hover">
+        <tr style="font-size:20px">
+            <td colspan="2" style="text-align:center">{{ um.matchDate }} , {{ um.matchTime }}</td>
+        </tr>
+        <tr style="font-size:20px">
+            <td>Tournament : </td>
+            <td>{{ um.tournament }}</td>
+        </tr>
+        <tr style="font-size:20px">
+            <td>Opponent : </td>
+            <td>{{ um.team2Name }}</td>
+        </tr>
+
+    </table>
+    <br><br>
+{% endfor %}
+
+{% endblock %}

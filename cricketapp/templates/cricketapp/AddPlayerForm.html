@@ -1,0 +1,64 @@
+{% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+    </div>
+{% endif %}
+<div class="container">
+    <form action="{% url 'cricket_app:add-player' %}" method="POST">
+        {% csrf_token %}
+        <div class="table-responsive">
+        <table class="table table-borderless">
+            <tr class="table-dark">
+                <td></td>
+                <td colspan="3" style="text-align:center;font-size:40px;color:white">Add Player</td>
+
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        {% for field in form %}
+            <tbody style="font-size:20px">
+            <tr>
+
+                <td>
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+
+                    {% for error in field.non_field_errors %}
+                        <div class="alert alert-danger">
+                            <strong>{{ error }}</strong>
+                        </div>
+                    {% endfor %}
+                </td>
+                <td>
+                    {{ field.label_tag }}
+                </td>
+                <td></td>
+                <td>
+                    {{ field }}
+                    {% if field.help_text %}
+                        <small style="color: tomato">{{ field.help_text }}</small>
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+        {% endfor %}
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <input type="reset" class="btn btn-block btn-danger">
+                    <input type="submit" class="btn btn-block btn-primary">
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    </form>
+</div>

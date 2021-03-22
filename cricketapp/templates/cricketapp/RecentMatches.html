@@ -1,0 +1,42 @@
+<h1 style="text-align:center">Recent Matches</h1>
+
+<table class="table">
+{% for cm in completed_match %}
+    <tbody  style="font-size:20px">
+        <tr>
+            {% if cm.win is True %}
+                <td colspan="2" style="text-align:center" class="table-success">
+                    {{ cm.matchDate }} , {{ cm.matchTime }}
+                    <a class="btn btn-outline-success" href="" style="float:right;pointer:none">Win</a>
+                </td>
+            {% else %}
+                <td colspan="2" style="text-align:center" class="table-danger">
+                    {{ cm.matchDate }} , {{ cm.matchTime }}
+                    <a class="btn btn-outline-danger" href="" style="float:right">Lost</a>
+                </td>
+            {% endif %}
+
+        </tr>
+        <tr>
+            <td>Tournament : </td>
+            <td>{{ cm.tournament }}</td>
+        </tr>
+        <tr>
+            <td>Opponent : </td>
+            <td>{{ cm.team2Name }}</td>
+        </tr>
+        <tr>
+            <td>Your Score : {{ cm.team1Score }} </td>
+            <td>Opponent Score : {{ cm.team2Score }}</td>
+        </tr>
+        <tr>
+            <td>Man of Match : </td>
+            <td>
+                {{ cm.mom }}
+                <a class="btn btn-primary" href="" style="float:right">View Full Scorecard</a>
+            </td>
+        </tr>
+        <tr><td></td><td></td></tr><tr></tr>
+    </tbody>
+{% endfor %}
+</table>

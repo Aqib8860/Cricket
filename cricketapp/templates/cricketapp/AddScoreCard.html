@@ -1,0 +1,71 @@
+{% extends 'cricketapp/main.html' %}
+{% block title %}Start Match{% endblock %}
+
+{% block content %}
+
+<h1>Add Your Score</h1>
+
+{% if match_id %}
+
+    <form action="{% url 'cricket_app:add-scorecard' match_id.id %}" method="POST">
+        {% csrf_token %}
+        <div class="table-responsive">
+            <table class="table table-borderless">
+                <tr class="table-dark">
+                    <td></td>
+                    <td colspan="3" style="text-align:center;font-size:40px;color:white">
+                        Add Batsman
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            {% for field in form %}
+                <tbody style="font-size:20px">
+                <tr>
+                    <td>
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error }}</strong>
+                            </div>
+                        {% endfor %}
+
+                        {% for error in field.non_field_errors %}
+                            <div class="alert alert-danger">
+                                <strong>{{ error }}</strong>
+                            </div>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {{ field.label_tag }}
+                    </td>
+                    <td></td>
+                    <td>
+                        {{ field }}
+                        {% if field.help_text %}
+                            <small style="color: tomato">{{ field.help_text }}</small>
+                        {% endif %}
+                    </td>
+                </tr>
+                </tbody>
+            {% endfor %}
+
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="reset" class="btn btn-block btn-danger">
+                        <input type="submit" class="btn btn-block btn-primary">
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </form>
+    {% include 'cricketapp/ScoreCard.html' %}
+
+{% else %}
+    <h1>Invalid Request</h1>
+{% endif %}
+
+{% endblock %}

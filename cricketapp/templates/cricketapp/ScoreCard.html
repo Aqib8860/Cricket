@@ -1,0 +1,49 @@
+<hr>
+<p style="font-size:25px">
+    Team 1 Score : 120/1
+    <span style="float:right">Overs :</span>
+    <br>
+    Team 2 Score : 120/1
+    <span style="float:right">Extras :</span>
+</p>
+<br>
+<p style="font-size:22px">
+    {{ request.user.team }}
+    <a href="" class="btn btn-outline-primary" style="float:right">View Opponent Score Card</a>
+</p>
+<div class="table-responsive-md">
+    <table class="table table-hover">
+        <thead class="table-secondary">
+            <tr style="font-size:20px">
+                <th scope="col">Player Name</th>
+                <th scope="col">Runs</th>
+                <th>Balls</th>
+                <th>4s</th>
+                <th>6s</th>
+                <th>Strike Rate</th>
+                <th>Add Runs</th>
+            </tr>
+        </thead>
+            <tbody class="" style="font-size:20px">
+            {% for s in score %}
+                <tr>
+                    <td>{{ s.batsmanName }}</td>
+                    <td>{{ s.batsmanRun }}</td>
+                    <td>{{ s.batsmanBalls }}</td>
+                    <td>{{ s.batsmanFours }}</td>
+                    <td>{{ s.batsmanSix }}</td>
+                    <td>{{ s.batsmanStrikeRate }}</td>
+                    <td>
+                        <a class="btn btn-outline-primary" href="{% url 'cricket_app:add-1' s.id %}">1</a>
+                        <a class="btn btn-outline-primary" href="">2</a>
+                        <a class="btn btn-outline-primary" href="">3</a>
+                        <a class="btn btn-outline-primary" href="">4</a>
+                        <a class="btn btn-outline-primary" href="">5</a>
+                        <a class="btn btn-outline-primary" href="">6</a>
+                        <a class="btn btn-outline-primary" href="">Wide</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>

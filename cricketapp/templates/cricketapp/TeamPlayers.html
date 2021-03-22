@@ -1,0 +1,47 @@
+{% extends 'cricketapp/main.html' %}
+{% block title %}Player{% endblock %}
+
+{% block content %}
+<br>
+{% include 'cricketapp/AddPlayerForm.html' %}
+<hr>
+<h1 style="text-align:center">Team Players</h1>
+<br>
+<div class="table-responsive-md">
+    <table class="table table-hover">
+        <thead class="table-secondary">
+            <tr style="font-size:20px">
+                <th scope="col">Player Name</th>
+                <th scope="col">Role</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th></th>
+            </tr>
+        </thead>
+        {% for player in players %}
+            <tbody class="" style="font-size:20px">
+                <tr>
+                    <td>
+                        {% if player.is_cap is True %}
+                            {{ player.name }} (Captain)
+                        {% elif player.is_vcap is True%}
+                            {{ player.name }} (Vice Captain)
+                        {% else %}
+                            {{ player.name }}
+                        {% endif %}
+                    </td>
+                    <td>{{ player.role }}</td>
+                    <td>{{ player.age }}</td>
+                    <td>{{ player.phone }}</td>
+                    <td>{{ player.email }}</td>
+                    <td>
+                        <a class="btn btn-outline-primary " href="#">Edit</a>
+                        <a class="btn btn-outline-danger" href="">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

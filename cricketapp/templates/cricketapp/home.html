@@ -1,0 +1,122 @@
+{% extends 'cricketapp/main.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1 style="text-align:right">Hello {{ request.user }}!</h1>
+<!--------------------------LIVE MATCHES------------------------------------>
+<h1 style="text-align:center">Live Matches</h1>
+<br>
+<div class="row">
+    <h5>Tournament Name 2021</h5>
+    <h4>Team 1 Score</h4>
+    <h4>Team 2 Score</h4>
+    <p style="color:red">Current Team need runs in balls</p>
+</div>
+<hr>
+<div></div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <h5>Tournament Name 2021</h5>
+        <h4>Team 1 Score</h4>
+        <h4>Team 2 Score</h4>
+        <p style="color:red">Current Team need runs in balls</p>
+    </div>
+</div>
+<hr>
+<!--------------------------UPCOMING MATCHES------------------------------------>
+<h1 style="text-align:center">Upcoming Matches</h1>
+<br>
+
+{% for match in upcoming_match %}
+    <div class="row">
+            <!a class="link" href="#">
+                    <h5>{{ match.tournament }}</h5>
+                    <h4>{{ match.team }}</h4>
+                    <small style="color:red">vs</small>
+                    <h4>{{ match.team2Name }}</h4>
+                <!/a>
+            <p style="color:orange">{{ match.matchDate|date:"D, d M, Y" }} {{ match.matchTime|time:"H:i, A" }}</p>
+
+    </div>
+{% endfor %}
+<hr>
+<!--------------------------OLD MATCHES------------------------------------>
+<h1 style="text-align:center">Recent Matches</h1>
+<br>
+{% for cm in completed_match %}
+<div class="row">
+    <h5>{{ cm.tournament }}</h5>
+    <h4>{{ cm.team }} : {{ cm.team1Score }}</h4>
+    <h4>{{ cm.team2Name }} : {{ cm.team2Score }}</h4>
+    {% if cm.win is True %}
+        <p style="color:green">{{ cm.team }} Won by Runs</p>
+    {% else %}
+        <p style="color:green">{{ cm.team2Name }} Won by Runs</p>
+    {% endif %}
+    <p style="color:blue">{{ cm.matchDate }}, {{ cm.matchTime }} </p>
+</div>
+<hr>
+<div></div>
+{% endfor %}
+<hr>
+
+<!--------------------------TOP TEAMS------------------------------------>
+<div class="row">
+    <h1 style="text-align:center">Top Teams</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Rank</td>
+                <td>Team Name</td>
+                <td>Wins</td>
+                <td>Lost</td>
+                <td>Total Matches</td>
+            </tr>
+        </thead>
+        {% for team in teams %}
+            <tr>
+                <td>1</td>
+                <td>{{ team.teamName }}</td>
+                <td>3</td>
+                <td>0</td>
+                <td>{{ matches }}</td>
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+<br>
+<hr>
+<!--------------------------TOP PLAYERS------------------------------------>
+<div class="row">
+    <h1 style="text-align:center">Top 3 Players</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Rank</td>
+                <td>Player Name</td>
+                <td>Wins</td>
+                <td>Lost</td>
+                <td>Total Matches</td>
+            </tr>
+        </thead>
+        {% for player in players%}
+            <tr>
+                <td>1</td>
+                <td>{{ player.name }}</td>
+                <td>1</td>
+                <td>1</td>
+                <td>2</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>1</td>
+            <td>AI World Pro</td>
+            <td>1</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}
